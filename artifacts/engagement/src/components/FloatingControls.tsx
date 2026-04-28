@@ -28,7 +28,7 @@ export const FloatingControls: React.FC = () => {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50 flex gap-3">
+    <div className="fixed top-6 right-6 z-50 flex gap-3 floating-controls">
       <button 
         onClick={toggleLang}
         className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border shadow-lg flex items-center justify-center text-foreground hover:bg-muted transition-colors"

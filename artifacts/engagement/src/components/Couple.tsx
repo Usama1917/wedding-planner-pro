@@ -33,12 +33,12 @@ export const Couple: React.FC = () => {
   const isDev = import.meta.env.DEV;
 
   return (
-    <section id="couple" className="py-24 px-6 overflow-hidden">
+    <section id="couple" data-ring-section="couple" className="py-24 px-6 overflow-hidden">
       <div 
         ref={containerRef}
         className={`max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 ${lang === 'ar' ? 'md:flex-row-reverse' : ''}`}
       >
-        <div className="couple-card relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden group shadow-xl">
+        <div data-ring-anchor className="couple-card relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden group shadow-xl">
           <img 
             src={eventConfig.images.couple1} 
             alt={eventConfig.groom}
@@ -55,7 +55,7 @@ export const Couple: React.FC = () => {
           )}
         </div>
 
-        <div className="couple-card relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden group shadow-xl md:translate-y-12">
+        <div data-ring-anchor className="couple-card relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden group shadow-xl md:translate-y-12">
           <img 
             src={eventConfig.images.couple2} 
             alt={eventConfig.bride}

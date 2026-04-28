@@ -28,9 +28,9 @@ END:VCALENDAR`;
   };
 
   return (
-    <section id="details" className="py-24 px-6 bg-muted/30">
+    <section id="details" data-ring-section="event" className="py-24 px-6 bg-muted/30">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-12">
+        <h2 data-ring-anchor className="text-3xl md:text-4xl font-serif text-foreground mb-12">
           {t.details.title}
         </h2>
 

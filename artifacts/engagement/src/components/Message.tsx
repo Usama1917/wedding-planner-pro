@@ -29,9 +29,9 @@ export const Message: React.FC = () => {
   }, []);
 
   return (
-    <section id="message" className="min-h-[70dvh] flex items-center justify-center py-24 px-6 relative">
+    <section id="message" data-ring-section="message" className="min-h-[70dvh] flex items-center justify-center py-24 px-6 relative">
       <div className="max-w-2xl mx-auto text-center" ref={textRef}>
-        <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-8">
+        <h2 data-ring-anchor className="text-3xl md:text-4xl font-serif text-foreground mb-8">
           {t.message.title}
         </h2>
         <div className="flex justify-center mb-8">

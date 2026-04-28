@@ -39,7 +39,7 @@ export const Gallery: React.FC = () => {
   const isDev = import.meta.env.DEV;
 
   return (
-    <section id="gallery" className="py-24 px-4 md:px-8">
+    <section id="gallery" data-ring-section="gallery" className="py-24 px-4 md:px-8">
       <div 
         ref={containerRef}
         className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]"
@@ -47,6 +47,8 @@ export const Gallery: React.FC = () => {
         {images.map((img, i) => (
           <div 
             key={i} 
+            data-ring-anchor
+            data-ring-avoid
             className={`gallery-item relative overflow-hidden rounded-xl group bg-muted ${img.className}`}
           >
             <img 

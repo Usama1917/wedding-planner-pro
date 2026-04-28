@@ -26,10 +26,10 @@ export const RSVP: React.FC = () => {
   };
 
   return (
-    <section id="rsvp" className="py-24 px-6 relative overflow-hidden">
+    <section id="rsvp" data-ring-section="rsvp" className="py-24 px-6 relative overflow-hidden">
       <div className="max-w-2xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-4">
+          <h2 data-ring-anchor className="text-3xl md:text-5xl font-serif text-foreground mb-4">
             {t.rsvp.title}
           </h2>
           <p className="text-muted-foreground font-light text-lg">
@@ -48,7 +48,7 @@ export const RSVP: React.FC = () => {
             <p className="text-muted-foreground">{t.rsvp.successMessage}</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-8 bg-card/50 backdrop-blur-md border border-card-border p-8 md:p-12 rounded-2xl shadow-xl">
+          <form data-ring-avoid onSubmit={handleSubmit} className="space-y-8 bg-card/50 backdrop-blur-md border border-card-border p-8 md:p-12 rounded-2xl shadow-xl">
             <div>
               <label htmlFor="name" className="block text-sm font-sans uppercase tracking-widest text-muted-foreground mb-2">
                 {t.rsvp.name} <span className="lowercase text-xs opacity-60">({lang === 'ar' ? 'اختياري' : 'Optional'})</span>

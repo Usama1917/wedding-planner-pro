@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero" ref={containerRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section id="hero" data-ring-section="hero" ref={containerRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -38,7 +38,7 @@ export const Hero: React.FC = () => {
           {t.hero.subtitle}
         </motion.div>
         
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-8 leading-tight drop-shadow-sm">
+        <h1 data-ring-anchor className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-8 leading-tight drop-shadow-sm">
           {lang === 'ar' ? (
             <div className="flex flex-col gap-4">
               <span>{eventConfig.groom}</span>

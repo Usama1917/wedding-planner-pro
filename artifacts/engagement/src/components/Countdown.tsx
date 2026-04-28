@@ -43,9 +43,9 @@ export const Countdown: React.FC = () => {
   ];
 
   return (
-    <section id="countdown" className="py-24 px-4">
+    <section id="countdown" data-ring-section="countdown" className="py-24 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 ${lang === 'ar' ? 'rtl' : 'ltr'}`}>
+        <div data-ring-avoid className={`grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 ${lang === 'ar' ? 'rtl' : 'ltr'}`}>
           {timeUnits.map((unit, index) => (
             <div 
               key={index} 
