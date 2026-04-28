@@ -1,13 +1,4 @@
-const SHEET_ID = process.env.GOOGLE_SHEET_ID;
-const SHEET_NAME = process.env.GOOGLE_SHEET_NAME || 'RSVP';
-const HEADERS = [
-  'Submitted At',
-  'Name',
-  'Message',
-  'Language',
-  'Page URL',
-  'User Agent',
-];
+const TELEGRAM_API_BASE = 'https://api.telegram.org';
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -19,28 +10,21 @@ module.exports = async function handler(req, res) {
     assertEnv();
 
     const payload = parseBody(req.body);
-    const accessToken = await getAccessToken();
+    const text = formatTelegramMessage(payload);
 
-    await ensureSheet(accessToken);
-    await ensureHeaders(accessToken);
-    await appendRsvp(accessToken, payload);
+    await sendTelegramMessage(text);
 
     return res.status(200).json({ ok: true });
   } catch (error) {
-    console.error('RSVP submission failed:', error);
+    console.error('RSVP Telegram submission failed:', error);
     return res.status(500).json({ ok: false, error: 'RSVP submission failed' });
   }
 };
 
 function assertEnv() {
-  const required = [
-    'GOOGLE_CLIENT_ID',
-    'GOOGLE_CLIENT_SECRET',
-    'GOOGLE_REFRESH_TOKEN',
-    'GOOGLE_SHEET_ID',
-  ];
-
+  const required = ['TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'];
   const missing = required.filter((key) => !process.env[key]);
+
   if (missing.length) {
     throw new Error(`Missing env vars: ${missing.join(', ')}`);
   }
@@ -62,121 +46,62 @@ function parseBody(body) {
   return body;
 }
 
-async function getAccessToken() {
-  const response = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+function formatTelegramMessage(payload) {
+  const submittedAt = payload.submittedAt
+    ? new Date(payload.submittedAt)
+    : new Date();
+
+  const formattedDate = new Intl.DateTimeFormat('en-GB', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    timeZone: 'Africa/Cairo',
+  }).format(submittedAt);
+
+  const name = payload.name || 'Guest';
+  const message = payload.message || '';
+  const language = payload.language || 'unknown';
+  const pageUrl = payload.pageUrl || '';
+
+  return [
+    '<b>New RSVP message</b>',
+    '',
+    `<b>Name:</b> ${escapeHtml(name)}`,
+    `<b>Message:</b> ${escapeHtml(message)}`,
+    `<b>Language:</b> ${escapeHtml(language)}`,
+    `<b>Submitted:</b> ${escapeHtml(formattedDate)} Cairo time`,
+    pageUrl ? `<b>Page:</b> ${escapeHtml(pageUrl)}` : '',
+  ].filter(Boolean).join('\n');
+}
+
+async function sendTelegramMessage(text) {
+  const response = await fetch(
+    `${TELEGRAM_API_BASE}/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: process.env.TELEGRAM_CHAT_ID,
+        message_thread_id: process.env.TELEGRAM_MESSAGE_THREAD_ID || undefined,
+        text,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true,
+      }),
     },
-    body: new URLSearchParams({
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
-      grant_type: 'refresh_token',
-    }),
-  });
+  );
 
   const data = await response.json();
-  if (!response.ok || !data.access_token) {
-    throw new Error(`Google OAuth failed: ${JSON.stringify(data)}`);
+  if (!response.ok || !data.ok) {
+    throw new Error(`Telegram API failed: ${JSON.stringify(data)}`);
   }
-
-  return data.access_token;
 }
 
-async function ensureSheet(accessToken) {
-  const metadata = await googleRequest(
-    accessToken,
-    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}?fields=sheets.properties.title`,
-  );
-
-  const exists = metadata.sheets?.some((sheet) => sheet.properties?.title === SHEET_NAME);
-  if (exists) {
-    return;
-  }
-
-  await googleRequest(
-    accessToken,
-    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}:batchUpdate`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        requests: [
-          {
-            addSheet: {
-              properties: {
-                title: SHEET_NAME,
-              },
-            },
-          },
-        ],
-      }),
-    },
-  );
-}
-
-async function ensureHeaders(accessToken) {
-  const range = encodeURIComponent(`${SHEET_NAME}!A1:F1`);
-  const data = await googleRequest(
-    accessToken,
-    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}`,
-  );
-
-  if (data.values?.[0]?.some(Boolean)) {
-    return;
-  }
-
-  await googleRequest(
-    accessToken,
-    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?valueInputOption=RAW`,
-    {
-      method: 'PUT',
-      body: JSON.stringify({
-        values: [HEADERS],
-      }),
-    },
-  );
-}
-
-async function appendRsvp(accessToken, payload) {
-  const range = encodeURIComponent(`${SHEET_NAME}!A:F`);
-  await googleRequest(
-    accessToken,
-    `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        values: [
-          [
-            payload.submittedAt || new Date().toISOString(),
-            payload.name || '',
-            payload.message || '',
-            payload.language || '',
-            payload.pageUrl || '',
-            payload.userAgent || '',
-          ],
-        ],
-      }),
-    },
-  );
-}
-
-async function googleRequest(accessToken, url, options = {}) {
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
-  });
-
-  const text = await response.text();
-  const data = text ? JSON.parse(text) : {};
-
-  if (!response.ok) {
-    throw new Error(`Google API failed: ${JSON.stringify(data)}`);
-  }
-
-  return data;
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
