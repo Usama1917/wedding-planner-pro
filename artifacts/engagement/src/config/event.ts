@@ -16,6 +16,4 @@ export const eventConfig = {
     gallery4: "/images/gallery4.png",
     gallery5: "/images/gallery5.png",
   },
-  
-  rsvpWhatsAppNumber: "1234567890", // PLACEHOLDER - replace with real number
 };

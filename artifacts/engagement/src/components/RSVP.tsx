@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { eventConfig } from '../config/event';
+
+const rsvpEndpoint = import.meta.env.VITE_RSVP_ENDPOINT?.trim() ?? '';
 
 export const RSVP: React.FC = () => {
   const { t, lang } = useLanguage();
@@ -12,17 +13,44 @@ export const RSVP: React.FC = () => {
     name: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('rsvp-submitted', 'true');
-    setIsSubmitted(true);
+    setSubmitError(null);
 
-    const waMessage = lang === 'ar' 
-      ? `مرحباً، أود تأكيد حضوري لحفل الخطوبة.${formData.name ? `%0Aالاسم: ${formData.name}` : ''}${formData.message ? `%0Aالرسالة: ${formData.message}` : ''}`
-      : `Hello, I'd like to confirm my attendance for the engagement.${formData.name ? `%0AName: ${formData.name}` : ''}${formData.message ? `%0AMessage: ${formData.message}` : ''}`;
-    
-    window.open(`https://wa.me/${eventConfig.rsvpWhatsAppNumber}?text=${waMessage}`, '_blank');
+    if (!rsvpEndpoint) {
+      setSubmitError(t.rsvp.notConfigured);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await fetch(rsvpEndpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          message: formData.message.trim(),
+          language: lang,
+          submittedAt: new Date().toISOString(),
+          pageUrl: window.location.href,
+          userAgent: navigator.userAgent,
+        }),
+      });
+
+      localStorage.setItem('rsvp-submitted', 'true');
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError(t.rsvp.submitError);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,10 +107,17 @@ export const RSVP: React.FC = () => {
 
             <button 
               type="submit"
-              className="w-full bg-primary text-primary-foreground py-4 rounded-full font-sans uppercase tracking-widest text-sm hover:opacity-90 transition-opacity mt-8"
+              disabled={isSubmitting}
+              className="w-full bg-primary text-primary-foreground py-4 rounded-full font-sans uppercase tracking-widest text-sm hover:opacity-90 transition-opacity mt-8 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {t.rsvp.submit}
+              {isSubmitting ? t.rsvp.submitting : t.rsvp.submit}
             </button>
+
+            {submitError && (
+              <p className="text-center text-sm text-destructive" role="alert">
+                {submitError}
+              </p>
+            )}
           </form>
         )}
       </div>

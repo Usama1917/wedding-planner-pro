@@ -28,8 +28,11 @@ export const i18n = {
       name: "Full Name",
       message: "Message to the Couple",
       submit: "Confirm Attendance",
+      submitting: "Sending...",
       successTitle: "Thank You!",
       successMessage: "Your RSVP has been confirmed. We look forward to celebrating with you.",
+      submitError: "Sorry, we could not send your RSVP. Please try again.",
+      notConfigured: "RSVP is not connected yet. Please try again later.",
     },
     footer: {
       closing: "With love",
@@ -64,8 +67,11 @@ export const i18n = {
       name: "الاسم الكامل",
       message: "رسالة للعروسين",
       submit: "تأكيد الحضور",
+      submitting: "جاري الإرسال...",
       successTitle: "شكراً لكم!",
       successMessage: "تم تأكيد حضوركم. نتطلع للاحتفال معكم.",
+      submitError: "عذراً، لم نتمكن من إرسال التأكيد. حاول مرة أخرى.",
+      notConfigured: "تأكيد الحضور غير متصل حالياً. حاول مرة أخرى لاحقاً.",
     },
     footer: {
       closing: "بكل الحب",
