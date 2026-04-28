@@ -1,3 +1,4 @@
+const SPREADSHEET_ID = '18XE_t5ETMmaF0HWpKhik4qM19zfCZOoBrBP3AkS3iHg';
 const SHEET_NAME = 'RSVP';
 const HEADERS = [
   'Submitted At',
@@ -31,7 +32,7 @@ function doGet() {
 }
 
 function getSheet_() {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = spreadsheet.getSheetByName(SHEET_NAME) || spreadsheet.insertSheet(SHEET_NAME);
   return sheet;
 }

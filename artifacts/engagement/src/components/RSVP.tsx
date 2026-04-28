@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const rsvpEndpoint = import.meta.env.VITE_RSVP_ENDPOINT?.trim() ?? '';
+const rsvpEndpoint = import.meta.env.VITE_RSVP_ENDPOINT?.trim() || '/api/rsvp';
 
 export const RSVP: React.FC = () => {
   const { t, lang } = useLanguage();
@@ -20,29 +20,37 @@ export const RSVP: React.FC = () => {
     e.preventDefault();
     setSubmitError(null);
 
-    if (!rsvpEndpoint) {
-      setSubmitError(t.rsvp.notConfigured);
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
-      await fetch(rsvpEndpoint, {
+      const payload = {
+        name: formData.name.trim(),
+        message: formData.message.trim(),
+        language: lang,
+        submittedAt: new Date().toISOString(),
+        pageUrl: window.location.href,
+        userAgent: navigator.userAgent,
+      };
+      const isExternalEndpoint = /^https?:\/\//i.test(rsvpEndpoint);
+      const requestOptions: RequestInit = {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
+          'Content-Type': isExternalEndpoint
+            ? 'text/plain;charset=utf-8'
+            : 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          message: formData.message.trim(),
-          language: lang,
-          submittedAt: new Date().toISOString(),
-          pageUrl: window.location.href,
-          userAgent: navigator.userAgent,
-        }),
-      });
+        body: JSON.stringify(payload),
+      };
+
+      if (isExternalEndpoint) {
+        requestOptions.mode = 'no-cors';
+      }
+
+      const response = await fetch(rsvpEndpoint, requestOptions);
+
+      if (!isExternalEndpoint && !response.ok) {
+        throw new Error('Failed to submit RSVP');
+      }
 
       localStorage.setItem('rsvp-submitted', 'true');
       setIsSubmitted(true);
