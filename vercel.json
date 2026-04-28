@@ -1,0 +1,12 @@
+{
+  "buildCommand": "pnpm --filter @workspace/engagement run build",
+  "outputDirectory": "artifacts/engagement/dist/public",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
