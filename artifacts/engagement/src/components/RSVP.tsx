@@ -10,7 +10,6 @@ export const RSVP: React.FC = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    guests: '1',
     message: ''
   });
 
@@ -20,8 +19,8 @@ export const RSVP: React.FC = () => {
     setIsSubmitted(true);
 
     const waMessage = lang === 'ar' 
-      ? `مرحباً، أود تأكيد حضوري لحفل الخطوبة.%0Aالاسم: ${formData.name}%0Aعدد الحضور: ${formData.guests}${formData.message ? `%0Aالرسالة: ${formData.message}` : ''}`
-      : `Hello, I'd like to confirm my attendance for the engagement.%0AName: ${formData.name}%0AGuests: ${formData.guests}${formData.message ? `%0AMessage: ${formData.message}` : ''}`;
+      ? `مرحباً، أود تأكيد حضوري لحفل الخطوبة.${formData.name ? `%0Aالاسم: ${formData.name}` : ''}${formData.message ? `%0Aالرسالة: ${formData.message}` : ''}`
+      : `Hello, I'd like to confirm my attendance for the engagement.${formData.name ? `%0AName: ${formData.name}` : ''}${formData.message ? `%0AMessage: ${formData.message}` : ''}`;
     
     window.open(`https://wa.me/${eventConfig.rsvpWhatsAppNumber}?text=${waMessage}`, '_blank');
   };
@@ -49,36 +48,18 @@ export const RSVP: React.FC = () => {
             <p className="text-muted-foreground">{t.rsvp.successMessage}</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6 bg-card/50 backdrop-blur-md border border-card-border p-8 md:p-12 rounded-2xl shadow-xl">
+          <form onSubmit={handleSubmit} className="space-y-8 bg-card/50 backdrop-blur-md border border-card-border p-8 md:p-12 rounded-2xl shadow-xl">
             <div>
               <label htmlFor="name" className="block text-sm font-sans uppercase tracking-widest text-muted-foreground mb-2">
-                {t.rsvp.name}
+                {t.rsvp.name} <span className="lowercase text-xs opacity-60">({lang === 'ar' ? 'اختياري' : 'Optional'})</span>
               </label>
               <input 
                 type="text" 
                 id="name" 
-                required
                 value={formData.name}
                 onChange={e => setFormData({...formData, name: e.target.value})}
                 className="w-full bg-background border-b border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors text-foreground"
-                placeholder=""
               />
-            </div>
-            
-            <div>
-              <label htmlFor="guests" className="block text-sm font-sans uppercase tracking-widest text-muted-foreground mb-2">
-                {t.rsvp.guests}
-              </label>
-              <select 
-                id="guests"
-                value={formData.guests}
-                onChange={e => setFormData({...formData, guests: e.target.value})}
-                className="w-full bg-background border-b border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors text-foreground"
-              >
-                {[1,2,3,4,5].map(n => (
-                  <option key={n} value={n}>{n}</option>
-                ))}
-              </select>
             </div>
 
             <div>
@@ -87,10 +68,12 @@ export const RSVP: React.FC = () => {
               </label>
               <textarea 
                 id="message" 
-                rows={3}
+                rows={6}
+                required
                 value={formData.message}
                 onChange={e => setFormData({...formData, message: e.target.value})}
-                className="w-full bg-background border-b border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors text-foreground resize-none"
+                className="w-full bg-background border-b border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors text-foreground resize-none text-lg font-light leading-relaxed"
+                placeholder={lang === 'ar' ? 'اكتب رسالة لأسامة وشهد...' : 'Write a message for Osama & Shahd...'}
               />
             </div>
 

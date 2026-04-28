@@ -1,0 +1,161 @@
+You are a senior front-end engineer and creative animation specialist with strong experience in 3D web interactions (Three.js / React Three Fiber / GSAP).
+
+I need you to UPDATE and IMPROVE the existing engagement invitation website with the following advanced requirements.
+
+==================================================
+CRITICAL FEATURE: 3D INTERACTIVE RING (MAIN FOCUS)
+==================================================
+
+The gold engagement ring must be redesigned as a TRUE 3D OBJECT, not a flat or fake animation.
+
+Requirements:
+
+1. 3D Implementation
+- The ring must be a real 3D model (GLB/GLTF preferred).
+- Use React Three Fiber (preferred) or Three.js.
+- It must have realistic material:
+  - Metallic gold
+  - Soft reflections
+  - Subtle lighting
+- Add soft shadows and highlights.
+- It must feel premium and realistic.
+
+2. Position & Layering
+- The ring must FLOAT ABOVE ALL UI ELEMENTS.
+- It should be rendered in a top visual layer (like a floating character).
+- It must NOT be behind sections.
+- It should stay visible during scroll (persistent presence).
+- Size: medium-small (not dominating, not tiny).
+
+3. Behavior (VERY IMPORTANT)
+The ring should feel like a “living character”, not just decoration.
+
+It must:
+- Move smoothly with scroll
+- Slightly follow scroll direction
+- Float gently when idle
+- Rotate slowly with subtle motion
+- React to cursor (optional but preferred on desktop)
+
+4. Interaction with Content (CORE IDEA)
+
+The ring must INTERACT with elements on the page in a smart and elegant way.
+
+Examples of interactions:
+
+A. On Scroll Near Elements:
+- When approaching a section, the ring slightly moves toward it
+- It can orbit (rotate around) important elements:
+  - Text blocks
+  - Section titles
+  - Images
+
+B. Hover / Focus Interactions:
+- When user hovers an element:
+  - The ring moves toward it
+  - Slightly enlarges the element (scale effect)
+  - Or highlights it (glow / shadow)
+  - Or gently circles around it
+
+C. Scroll Trigger Effects:
+- As user scrolls:
+  - The ring may:
+    - Wrap around a text line
+    - Circle a photo frame
+    - Pass behind → then in front (depth illusion)
+    - Trigger glow or reveal animation on elements
+
+D. Micro Animations:
+- Small pulse
+- Soft glow
+- Light sparkles
+- Smooth rotation changes
+
+IMPORTANT:
+- All interactions must be:
+  - Soft
+  - Elegant
+  - Slow
+  - Non-aggressive
+- Avoid anything cartoonish or exaggerated.
+
+The goal:
+The ring should feel like a subtle emotional companion guiding the user through the invitation.
+
+==================================================
+PERFORMANCE & FALLBACK
+==================================================
+
+- Optimize performance for mobile devices.
+- Use reduced detail or fallback if device is weak.
+- Respect “prefers-reduced-motion”.
+- If 3D fails, fallback to a simple elegant 2D animation.
+
+==================================================
+RSVP SECTION UPDATE
+==================================================
+
+Modify the RSVP section as follows:
+
+REMOVE:
+- Number of guests field completely.
+
+KEEP ONLY:
+- Name (optional or required – your choice)
+- Message field (main focus)
+- Submit / Confirm button
+
+Purpose:
+The RSVP should feel like a simple personal message to the couple, not a formal attendance system.
+
+Make it:
+- Minimal
+- Elegant
+- Emotional
+
+Optional:
+- Add placeholder like:
+  - English: "Write a message for Osama & Shahd..."
+  - Arabic: "اكتب رسالة لأسامة وشهد..."
+
+==================================================
+ANIMATION QUALITY REQUIREMENTS
+==================================================
+
+- All animations must be:
+  - Smooth
+  - Premium
+  - High FPS
+  - Lightweight
+- Use:
+  - Framer Motion
+  - GSAP ScrollTrigger (for scroll interactions)
+  - React Three Fiber (for 3D ring)
+
+==================================================
+INTEGRATION NOTES
+==================================================
+
+- Keep the ring logic modular (separate component).
+- Ensure it does not break layout or responsiveness.
+- Make sure it works with:
+  - RTL (Arabic)
+  - LTR (English)
+  - Light mode
+  - Dark mode
+
+==================================================
+FINAL EXPECTATION
+==================================================
+
+The final experience must feel like:
+
+- A luxury digital engagement invitation
+- With a 3D gold ring acting like a subtle interactive character
+- Smoothly guiding the user through the story
+- Interacting elegantly with text, images, and sections
+- Never distracting, always enhancing
+
+Do NOT implement a simple spinning ring.
+
+This must be a high-end interactive 3D experience.
