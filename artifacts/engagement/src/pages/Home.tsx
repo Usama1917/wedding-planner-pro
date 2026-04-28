@@ -8,7 +8,6 @@ import { Gallery } from '../components/Gallery';
 import { RSVP } from '../components/RSVP';
 import { Footer } from '../components/Footer';
 import { FloatingControls } from '../components/FloatingControls';
-import { Ring3D } from '../components/Ring3D/Ring3D';
 import { useLenis } from '../hooks/use-lenis';
 
 export default function Home() {
@@ -17,8 +16,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-background overflow-hidden">
       <FloatingControls />
-      <Ring3D />
-      
+
       <div className="relative z-10">
         <Hero />
         <Couple />
