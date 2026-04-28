@@ -1,0 +1,411 @@
+You are a senior full-stack UI/UX developer, creative web designer, and animation-focused front-end engineer.
+
+I want you to build a complete engagement invitation website from A to Z.
+
+Project details:
+- Groom name: Osama
+- Bride name: Shahd
+- Event date: 10 July 2026
+- Venue name: Al Masa Open Air Hall
+- Location link: https://maps.app.goo.gl/ioXhRGm8daTC6kPq9
+
+The website should be elegant, romantic, premium, soft, emotional, and highly polished. It must feel like a luxury digital engagement invitation experience, not a basic landing page.
+
+I will provide example screenshots and example websites for inspiration. Analyze them carefully and recreate the same emotional direction, luxury feeling, animation quality, spacing, and overall user experience — but do not copy them directly. Create a unique design for Osama & Shahd.
+
+The website must support:
+- English version
+- Arabic version
+- Light mode
+- Dark mode
+
+Everything should work based on the website settings and state.
+
+==================================================
+CORE EXPERIENCE DIRECTION
+==================================================
+
+This website should feel magical and memorable from the very first second.
+
+I want the experience to be heavily focused on:
+- soft luxury visuals
+- romantic atmosphere
+- smooth delicate animations
+- interactive scrolling
+- elegant transitions
+- emotional storytelling
+
+The website should be rich in animation, but still clean, elegant, lightweight, and mobile-friendly.
+
+==================================================
+VERY IMPORTANT SPECIAL SCROLL CONCEPT
+==================================================
+
+I want a unique scroll-based visual concept centered around a gold engagement ring.
+
+This ring should be a major animated visual element in the website.
+
+Scroll behavior idea:
+- At the beginning of the website, the opening scene should include a beautiful cinematic animation of a gold ring.
+- The ring should appear in an elegant, premium, magical way.
+- As the user scrolls, the ring should remain present as a central floating visual element in the website experience.
+- It should stay around the center area of the viewport (or slightly adapt its position in a refined way), while the surrounding content changes.
+- The ring should interact visually with the page sections, text, and images as the scroll progresses.
+
+What I mean by “interact”:
+- The ring can softly rotate, glow, pulse, or shift in response to section changes.
+- It can react to nearby content blocks.
+- It can create elegant transitions between sections.
+- It can overlap gently with text or gallery frames in a tasteful way.
+- It can trigger subtle particles, sparkles, light trails, reflections, or soft highlights.
+- It can become part of the storytelling as the user scrolls deeper into the invitation.
+
+Examples of ring interactions:
+- In the hero section, the ring is introduced beautifully.
+- In the invitation message section, the ring becomes softer and more romantic.
+- In the countdown or event details section, the ring can subtly frame or highlight key information.
+- In the gallery section, the ring can interact with image transitions.
+- Near the RSVP section, the ring animation can become more complete and emotionally satisfying.
+
+Important:
+- The ring must not feel gimmicky or childish.
+- It must feel luxurious, subtle, elegant, and artistic.
+- The interaction should enhance the website, not distract from the content.
+- The ring should remain one of the signature features of the site.
+
+You can implement this with scroll-based animation logic using modern front-end techniques.
+If using React / Next.js, use high-quality animation libraries where appropriate, such as:
+- Framer Motion
+- GSAP ScrollTrigger
+- Lenis or smooth scrolling utilities if needed
+
+Make the ring animation smooth and high-end.
+Also make sure it performs well on mobile devices.
+Provide a graceful fallback for lower-performance devices.
+Respect reduced motion preferences if possible.
+
+==================================================
+BILINGUAL WEBSITE
+==================================================
+
+The website must support:
+- English version
+- Arabic version
+
+There should be a visible but elegant language switcher.
+
+Requirements:
+- Arabic must be fully RTL.
+- English must be fully LTR.
+- All text, labels, buttons, section titles, and content must change based on the selected language.
+- The layout should adapt correctly for RTL/LTR.
+- The Arabic version should feel naturally designed for Arabic, not just mechanically translated.
+
+Use elegant wording for both languages.
+
+Example English content:
+- "Osama & Shahd"
+- "Together with their families, they invite you to celebrate their engagement"
+- "10 July 2026"
+- "Al Masa Open Air Hall"
+- "A beautiful beginning to forever"
+
+Example Arabic content:
+- "أسامة وشهد"
+- "بكل حب، ندعوكم لمشاركتنا فرحة خطوبتنا"
+- "١٠ يوليو ٢٠٢٦"
+- "قاعة الماسة أوبن إير"
+- "بداية جميلة لحكاية العمر"
+
+==================================================
+LIGHT MODE AND DARK MODE
+==================================================
+
+The website must support:
+- Light mode
+- Dark mode
+
+Add a beautiful theme toggle button.
+
+Light mode style:
+- Soft ivory / warm white background
+- Rose gold accents
+- Light pink / champagne tones
+- Elegant floral romantic feeling
+
+Dark mode style:
+- Deep navy / rich black background
+- Gold / rose gold accents
+- Soft glow, sparkles, subtle particles
+- Elegant luxury evening celebration feeling
+
+Important:
+- Both modes must feel fully designed.
+- Do not simply invert colors.
+- The gold ring must look beautiful in both light and dark modes.
+
+==================================================
+WEBSITE STRUCTURE
+==================================================
+
+Build the website as a single-page engagement invitation website with smooth scrolling.
+
+Required sections:
+
+1. Opening / Hero Section
+- Full-screen premium hero section.
+- Show the names: Osama & Shahd.
+- Show a romantic subtitle.
+- Show the event date.
+- The opening should start with a cinematic animation featuring the gold ring.
+- Add soft background motion such as subtle particles, glows, light rays, floral hints, bokeh, or gradients.
+- Include a smooth entrance animation when the site loads.
+- Include a beautiful CTA button:
+  - English: "View Invitation"
+  - Arabic: "عرض الدعوة"
+- The button should smoothly scroll to the next section.
+
+2. Couple / Photo Section
+- Create a beautiful area where I can easily add or replace photos later.
+- Use placeholder images for now.
+- Support multiple images.
+- Add soft reveal animations and premium hover effects.
+- Make the photos feel romantic and elegant.
+- The gold ring can softly interact with this section, for example by passing near images or highlighting frames.
+
+3. Invitation Message Section
+- A romantic message section with elegant typography.
+- Add decorative separators, thin gold lines, or floral ornaments.
+- Text must adapt to Arabic and English.
+- The ring can subtly respond here with glow or graceful movement.
+
+4. Countdown Section
+- Add a live countdown timer until 10 July 2026.
+- Show:
+  - Days
+  - Hours
+  - Minutes
+  - Seconds
+- Arabic labels:
+  - يوم
+  - ساعة
+  - دقيقة
+  - ثانية
+- Use elegant glassmorphism or soft premium card styling.
+- Add subtle animation to the countdown elements.
+- The ring can help visually frame the countdown or accent the section.
+
+5. Event Details Section
+Show:
+- Date: 10 July 2026
+- Venue: Al Masa Open Air Hall
+- Location button linked to:
+  https://maps.app.goo.gl/ioXhRGm8daTC6kPq9
+
+Buttons:
+English:
+- "Open Location"
+- "Save the Date"
+
+Arabic:
+- "فتح الموقع"
+- "حفظ التاريخ"
+
+Requirements:
+- “Open Location” must open Google Maps in a new tab.
+- “Save the Date” should create a downloadable calendar file or use a simple calendar integration if possible.
+
+6. Gallery Section
+- Build a beautiful gallery where I can add engagement photos later.
+- Use placeholder images for now.
+- Make image replacement easy from one config file or one data structure.
+- Support both vertical and horizontal photos.
+- Add smooth hover, reveal, scroll animations, and optional lightbox preview.
+- Let the ring subtly interact with this gallery section in a tasteful way.
+
+7. RSVP / Confirmation Section
+- Add an RSVP section.
+- For now, create a simple elegant form with:
+  - Name
+  - Number of guests
+  - Message / notes
+  - Confirm attendance button
+- Make the form visually beautiful and gently animated.
+- Store data locally for now or prepare a clean structure to connect later to Google Sheets, Firebase, Supabase, or an API.
+- If easy to implement, add a WhatsApp confirmation option.
+- Support Arabic and English.
+
+8. Footer
+- Add a romantic closing message.
+Example:
+- English: "With love, Osama & Shahd"
+- Arabic: "بكل الحب، أسامة وشهد"
+- Add a soft elegant ending animation.
+- End the scroll journey in a satisfying way, potentially resolving the ring animation beautifully.
+
+==================================================
+ANIMATION REQUIREMENTS
+==================================================
+
+The website must be full of smooth, delicate, elegant animations.
+
+Use animations such as:
+- Fade in
+- Slide up
+- Soft floating motion
+- Parallax movement
+- Glow transitions
+- Micro-interactions on buttons
+- Gallery reveal animations
+- Section transitions
+- Smooth scrolling
+- Elegant page loading animation
+- Scroll-linked storytelling
+- Ring-based animation choreography
+
+Animation style must be:
+- Soft
+- Romantic
+- Premium
+- Refined
+- Lightweight
+- Mobile-friendly
+- Not too fast
+- Not flashy
+- Not childish
+
+The website should feel alive and polished.
+
+==================================================
+DESIGN STYLE
+==================================================
+
+Overall design direction:
+- Luxury engagement invitation
+- Romantic
+- Elegant
+- Soft
+- Premium
+- Clean
+- Emotional
+- Modern
+- Arabic/English friendly
+- Mobile-first
+- Beautiful on iPhone screens
+- Also excellent on tablets and desktops
+
+Typography:
+- Use elegant fonts.
+- For English, use a romantic serif font for names and a clean readable font for body text.
+- For Arabic, use a beautiful Arabic font with excellent RTL support.
+- The couple names should look especially elegant and premium.
+
+Suggested font direction:
+- English display font: Playfair Display / Cormorant Garamond / Great Vibes
+- Arabic font: Cairo / Tajawal / Amiri / Noto Kufi Arabic
+
+Choose the best combinations visually.
+
+==================================================
+CUSTOMIZATION SYSTEM
+==================================================
+
+Create a simple configuration system or data object where I can easily edit:
+- Groom name
+- Bride name
+- Date
+- Venue
+- Location link
+- Hero images
+- Gallery images
+- Invitation texts
+- Theme settings
+- Language text
+- RSVP settings
+
+Do not scatter values throughout the code.
+Make future editing easy and centralized.
+
+==================================================
+IMAGE HANDLING
+==================================================
+
+I will provide photos later.
+
+For now:
+- Use elegant placeholder images.
+- Make it obvious where I should replace them.
+- The site must still look beautiful before real images are added.
+- Support multiple photos.
+- Make sure images can be swapped without breaking the design.
+
+==================================================
+TECHNICAL REQUIREMENTS
+==================================================
+
+Use clean, organized, production-ready code.
+
+Preferred stack:
+- Next.js or React
+- Reusable components
+- Clean folder structure
+- Translation files for Arabic and English
+- Config/data file for event details
+- Tailwind CSS or similarly clean responsive styling system
+- Framer Motion and/or GSAP for advanced animations
+- Clean state management for theme and language switching
+
+Requirements:
+- Fully responsive
+- Mobile-first
+- Fast
+- SEO-friendly
+- Accessible
+- Smooth on phones
+- Compatible with modern browsers
+- Clean code
+- Avoid messy hardcoded repeated values
+
+If implementing the ring animation:
+- Keep it modular
+- Separate the ring animation logic cleanly
+- Make it maintainable
+- Avoid overcomplicated unstructured code
+
+==================================================
+UX DETAILS
+==================================================
+
+Important UX details:
+- The first screen should feel magical.
+- Visitors should instantly understand that this is an engagement invitation.
+- Navigation should be simple and elegant.
+- Add elegant floating controls for:
+  - Language switcher
+  - Light/Dark mode switcher
+- These controls should not ruin the design.
+- Add smooth transitions when changing theme or language.
+- Make both Arabic and English versions feel native.
+- Ensure scroll performance is smooth and refined.
+
+==================================================
+FINAL DELIVERABLES
+==================================================
+
+Please build the full website and ensure:
+- All sections are complete and polished
+- Arabic and English work correctly
+- RTL/LTR switching works correctly
+- Light and dark modes work correctly
+- Ring-based scroll animation is implemented beautifully
+- Smooth animations are implemented across the website
+- Event data is correct
+- The location button opens:
+  https://maps.app.goo.gl/ioXhRGm8daTC6kPq9
+- Photos can be easily replaced later
+- The site looks premium and emotionally engaging
+- The experience feels like a high-end digital invitation, not a generic template
+
+Do not create a basic template.
+
+Create a high-end, emotional, interactive digital engagement invitation experience for Osama & Shahd, with the gold ring as a signature scroll-based storytelling element.

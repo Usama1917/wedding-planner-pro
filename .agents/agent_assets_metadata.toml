@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "1Nz408SuOteAZf2wsqZSK"
+uri = "file://artifacts/engagement/public/images/hero.png"
+type = "image"
+title = "Warm romantic bokeh hero background"
+
+[[generated]]
+id = "iy9usLpyePOAh2O6_Seu7"
+uri = "file://artifacts/engagement/public/images/couple1.png"
+type = "image"
+title = "Abstract gold texture portrait frame"
+
+[[generated]]
+id = "4UHne4ynCLu4bKScqjdg7"
+uri = "file://artifacts/engagement/public/images/couple2.png"
+type = "image"
+title = "Romantic floral arrangement portrait"
+
+[[generated]]
+id = "ZqaZ4P8BQLd16Bpw4SO_6"
+uri = "file://artifacts/engagement/public/images/gallery1.png"
+type = "image"
+title = "Luxury table setting detail"
+
+[[generated]]
+id = "udz6G5Ls9rk8L1oCaGIbe"
+uri = "file://artifacts/engagement/public/images/gallery2.png"
+type = "image"
+title = "Two intertwined rings silhouette"
+
+[[generated]]
+id = "A5w6Hn15uQH7Hk6v4idaz"
+uri = "file://artifacts/engagement/public/images/gallery3.png"
+type = "image"
+title = "Soft silk fabric texture"
+
+[[generated]]
+id = "IXTxLpcXnKDbYVtgWJBr7"
+uri = "file://artifacts/engagement/public/images/gallery4.png"
+type = "image"
+title = "Candlelit garden path"
+
+[[generated]]
+id = "XbOzW40E3baoK-gbH8NhS"
+uri = "file://artifacts/engagement/public/images/gallery5.png"
+type = "image"
+title = "Wax seal on fine paper"

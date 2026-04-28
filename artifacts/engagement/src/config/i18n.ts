@@ -1,0 +1,78 @@
+export const i18n = {
+  en: {
+    hero: {
+      subtitle: "Are getting engaged",
+      date: "July 10, 2026",
+      cta: "View Invitation",
+    },
+    message: {
+      title: "Our Story Begins",
+      text: "We invite you to share in our joy as we celebrate our engagement. Your presence will make our special day complete. Join us for an evening of love, laughter, and new beginnings.",
+    },
+    countdown: {
+      days: "Days",
+      hours: "Hours",
+      minutes: "Minutes",
+      seconds: "Seconds",
+    },
+    details: {
+      title: "The Celebration",
+      dateLabel: "Date & Time",
+      venueLabel: "Venue",
+      openLocation: "Open Location",
+      saveDate: "Save the Date",
+    },
+    rsvp: {
+      title: "RSVP",
+      subtitle: "Kindly confirm your attendance",
+      name: "Full Name",
+      guests: "Number of Guests",
+      message: "Message to the Couple (Optional)",
+      submit: "Confirm Attendance",
+      successTitle: "Thank You!",
+      successMessage: "Your RSVP has been confirmed. We look forward to celebrating with you.",
+    },
+    footer: {
+      closing: "With love",
+    }
+  },
+  ar: {
+    hero: {
+      subtitle: "نحتفل بخطوبتنا",
+      date: "١٠ يوليو ٢٠٢٦",
+      cta: "عرض الدعوة",
+    },
+    message: {
+      title: "بداية قصتنا",
+      text: "ندعوكم لمشاركتنا فرحتنا في حفل خطوبتنا. حضوركم سيكمل يومنا الخاص. انضموا إلينا في أمسية مليئة بالحب والضحك والبدايات الجديدة.",
+    },
+    countdown: {
+      days: "يوم",
+      hours: "ساعة",
+      minutes: "دقيقة",
+      seconds: "ثانية",
+    },
+    details: {
+      title: "تفاصيل الحفل",
+      dateLabel: "التاريخ والوقت",
+      venueLabel: "المكان",
+      openLocation: "فتح الموقع",
+      saveDate: "حفظ الموعد",
+    },
+    rsvp: {
+      title: "تأكيد الحضور",
+      subtitle: "نرجو منكم تأكيد حضوركم",
+      name: "الاسم الكامل",
+      guests: "عدد الحضور",
+      message: "رسالة للعروسين (اختياري)",
+      submit: "تأكيد الحضور",
+      successTitle: "شكراً لكم!",
+      successMessage: "تم تأكيد حضوركم. نتطلع للاحتفال معكم.",
+    },
+    footer: {
+      closing: "بكل الحب",
+    }
+  }
+};
+
+export type Language = 'en' | 'ar';
