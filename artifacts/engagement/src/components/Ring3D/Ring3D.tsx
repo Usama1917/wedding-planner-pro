@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import * as THREE from 'three';
 import { RingMesh } from './RingMesh';
 import { GoldRing as SVGFallback } from '../GoldRing';
 
@@ -30,31 +31,44 @@ export const Ring3D: React.FC = () => {
     return <SVGFallback />;
   }
 
-  // Sample theme to adjust lighting slightly if needed, but environment mostly handles it.
   const isDark = document.documentElement.classList.contains('dark');
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-50" aria-hidden="true" style={{ background: 'transparent' }}>
       <Canvas
-        gl={{ alpha: true, antialias: true }}
+        gl={{ 
+          alpha: true, 
+          antialias: true,
+          outputColorSpace: THREE.SRGBColorSpace,
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.0
+        }}
         dpr={isMobile ? [1, 1.5] : [1, 2]}
         camera={{ position: [0, 0, 5], fov: 45 }}
-        style={{ pointerEvents: 'none' }}
+        style={{ pointerEvents: 'none', background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          <Environment preset={isDark ? "sunset" : "studio"} background={false} />
+          <Environment preset="studio" background={false} environmentIntensity={isDark ? 1.2 : 1.6} />
           
-          <ambientLight intensity={isDark ? 0.3 : 0.6} />
-          <directionalLight position={[5, 5, 5]} intensity={1.5} color="#fff" />
+          <ambientLight intensity={isDark ? 0.3 : 0.4} />
+          
+          {/* Key directional light (warm white) */}
+          <directionalLight position={[5, 5, 5]} intensity={1.5} color="#fffcf5" />
+          
+          {/* Fill light (cool, low intensity) */}
+          <directionalLight position={[-5, 0, 5]} intensity={0.3} color="#e0f0ff" />
+
+          {/* Rim / back light (warm) */}
+          <directionalLight position={[0, 5, -5]} intensity={isDark ? 0.6 : 0.8} color="#f9f1cc" />
           
           <RingMesh />
 
           {!isMobile && !prefersReducedMotion && (
             <EffectComposer disableNormalPass>
               <Bloom 
-                luminanceThreshold={1.2} 
+                luminanceThreshold={0.9} 
                 mipmapBlur 
-                intensity={0.4} 
+                intensity={0.1} 
               />
             </EffectComposer>
           )}

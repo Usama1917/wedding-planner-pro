@@ -98,7 +98,7 @@ export function useRingChoreography() {
       const y = -((rect.top + rect.height / 2) / window.innerHeight) * 2 + 1;
       
       magnetTarget.current = {
-        pos: new THREE.Vector3(x * viewport.width / 2, y * viewport.height / 2, 0.5),
+        pos: new THREE.Vector3(x * viewport.width / 2, y * viewport.height / 2, 0),
         active: true
       };
       
@@ -143,56 +143,63 @@ export function useRingChoreography() {
     const upperIdx = Math.min(lowerIdx + 1, stops.length - 1);
     const t = idx - lowerIdx;
     
+    // Smooth easing for lerp
+    const easedT = t * t * (3 - 2 * t);
+    
     const stop1 = stops[lowerIdx];
     const stop2 = stops[upperIdx];
     
     // Target state based on scroll
-    const targetPos = new THREE.Vector3().set(...stop1.position).lerp(new THREE.Vector3().set(...stop2.position), t);
+    const targetPos = new THREE.Vector3().set(...stop1.position).lerp(new THREE.Vector3().set(...stop2.position), easedT);
     
     const rot1 = new THREE.Euler().set(...stop1.rotation);
     const rot2 = new THREE.Euler().set(...stop2.rotation);
     const targetRot = new THREE.Euler(
-      THREE.MathUtils.lerp(rot1.x, rot2.x, t),
-      THREE.MathUtils.lerp(rot1.y, rot2.y, t),
-      THREE.MathUtils.lerp(rot1.z, rot2.z, t)
+      THREE.MathUtils.lerp(rot1.x, rot2.x, easedT),
+      THREE.MathUtils.lerp(rot1.y, rot2.y, easedT),
+      THREE.MathUtils.lerp(rot1.z, rot2.z, easedT)
     );
     
-    const targetScale = THREE.MathUtils.lerp(stop1.scale, stop2.scale, t);
+    const targetScale = THREE.MathUtils.lerp(stop1.scale, stop2.scale, easedT);
     
     // Apply magnetic hover if active
     if (magnetTarget.current.active) {
-      targetPos.lerp(magnetTarget.current.pos, 0.8);
+      targetPos.lerp(magnetTarget.current.pos, 0.1);
     } else if (isFinePointer) {
-      // Subtle parallax based on pointer
-      targetPos.x += pointerTarget.current.x * 0.2;
-      targetPos.y += pointerTarget.current.y * 0.2;
+      // Subtle parallax based on pointer - very tiny
+      targetPos.x += pointerTarget.current.x * 0.05;
+      targetPos.y += pointerTarget.current.y * 0.05;
       
       // Tilt slightly toward pointer
-      targetRot.y += pointerTarget.current.x * 0.2;
-      targetRot.x -= pointerTarget.current.y * 0.2;
+      targetRot.y += pointerTarget.current.x * 0.1;
+      targetRot.x -= pointerTarget.current.y * 0.1;
     }
     
     // Idle animation (bobbing and slow rotation)
-    const idleY = Math.sin(state.clock.elapsedTime) * 0.05;
-    const idleRotY = state.clock.elapsedTime * 0.2;
+    // Tiny amplitude, slow period
+    const idleY = Math.sin(state.clock.elapsedTime * 1.5) * 0.015;
+    const idleRotY = state.clock.elapsedTime * 0.06; // very slow rotation
+    const idleRotX = Math.sin(state.clock.elapsedTime * 1.2) * 0.02; // subtle wobble
     
     if (!magnetTarget.current.active) {
       targetPos.y += idleY;
       targetRot.y += idleRotY;
+      targetRot.x += idleRotX;
     }
 
     // Smoothly interpolate current state to target state
-    groupRef.current.position.lerp(targetPos, 0.05);
+    // Use low lerp factors for "heavy/cinematic" feel
+    groupRef.current.position.lerp(targetPos, 0.03);
     
     // Use quaternion for smooth rotation interpolation
     const currentQuat = new THREE.Quaternion().setFromEuler(groupRef.current.rotation);
     const targetQuat = new THREE.Quaternion().setFromEuler(targetRot);
-    currentQuat.slerp(targetQuat, 0.05);
+    currentQuat.slerp(targetQuat, 0.03);
     groupRef.current.rotation.setFromQuaternion(currentQuat);
     
     // Smooth scale
     const currentScale = groupRef.current.scale.x;
-    groupRef.current.scale.setScalar(THREE.MathUtils.lerp(currentScale, targetScale, 0.05));
+    groupRef.current.scale.setScalar(THREE.MathUtils.lerp(currentScale, targetScale, 0.03));
   });
 
   return { groupRef };

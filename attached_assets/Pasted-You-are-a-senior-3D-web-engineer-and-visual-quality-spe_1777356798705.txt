@@ -1,0 +1,172 @@
+You are a senior 3D web engineer and visual quality specialist.
+
+I need you to FIX and REBUILD the gold ring in my engagement invitation website.
+
+The current implementation is WRONG and does not match the desired quality.
+
+==================================================
+CRITICAL ISSUES TO FIX
+==================================================
+
+1. The ring is TOO BIG.
+→ It should be much smaller.
+
+Target size:
+- Approximately the same height as the letter "O" in the word "Osama" in the hero section.
+- It should feel subtle and elegant, not dominant.
+
+2. The material looks CHEAP and FAKE.
+→ It does NOT look like real gold.
+
+3. There is a visible "floating background / plane" under or around the ring.
+→ This must be completely removed.
+
+4. The shape of the ring is WRONG.
+→ It does not match the real ring reference I provided.
+
+==================================================
+GOAL
+==================================================
+
+Create a HIGH-END, REALISTIC, MINIMAL, ELEGANT 3D GOLD RING
+that matches the REAL ring photo EXACTLY.
+
+This is NOT a decorative ring.
+This must feel like a real photographed luxury gold ring.
+
+==================================================
+EXACT RING DESIGN (MATCH THE REAL PHOTO)
+==================================================
+
+You MUST carefully analyze the reference image I provided and replicate it precisely.
+
+The real ring has these characteristics:
+
+Shape:
+- Flat band (modern wedding ring style)
+- NOT rounded like a donut
+- Clean geometric look
+
+Center band:
+- A flat, wide, slightly matte/brushed strip in the middle
+- This center strip is less reflective than the sides
+
+Edges:
+- Two outer edges (top and bottom) are:
+  - Highly polished
+  - Very reflective
+  - Slightly beveled (not sharp, not too rounded)
+
+Profile:
+- Medium thickness (not too thin, not bulky)
+- Inner side slightly rounded (comfort fit)
+
+NO:
+- No stones
+- No engraving
+- No patterns
+- No exaggerated curves
+
+==================================================
+MATERIAL (VERY IMPORTANT)
+==================================================
+
+Use PHYSICALLY CORRECT GOLD MATERIAL (PBR):
+
+- Color: rich warm yellow gold (not orange, not pale)
+- Metalness: 1.0
+- Roughness:
+  - Edges: very low (high gloss, mirror-like)
+  - Center strip: slightly higher (subtle matte/brushed look)
+
+Reflections:
+- Sharp, realistic reflections
+- Use environment HDRI lighting
+- No fake glow
+- No plastic look
+
+Surface:
+- Perfectly clean
+- No noise
+- No scratches
+- No grain unless extremely subtle on the center strip
+
+This must look like REAL gold under studio lighting.
+
+==================================================
+REMOVE FAKE VISUALS
+==================================================
+
+- REMOVE any ground plane under the ring
+- REMOVE fake shadow plate
+- REMOVE floating rectangle or background shape
+- The ring must exist cleanly in space
+
+Shadows:
+- Only soft, natural contact shadows when interacting with UI (if needed)
+- Otherwise, no visible fake base
+
+==================================================
+POSITIONING & LAYER
+==================================================
+
+- The ring must be ABOVE ALL UI (top layer)
+- It floats freely
+- Does NOT sit on anything
+- Does NOT clip into sections
+- Does NOT go behind content
+
+==================================================
+ANIMATION STYLE
+==================================================
+
+- Very soft floating motion
+- Slow subtle rotation
+- No aggressive spinning
+- No exaggerated movement
+
+The motion must feel:
+- Calm
+- Elegant
+- Premium
+- Almost cinematic
+
+==================================================
+INTERACTION (KEEP BUT REFINE)
+==================================================
+
+Keep the interaction concept but make it MORE SUBTLE and REFINED:
+
+- When near text → slight orbit (small radius)
+- When near image → gentle pass around frame
+- On hover → small scale effect on the element (NOT the ring exploding)
+- On scroll → smooth transitions, no sudden jumps
+
+The ring must behave like a LUXURY ELEMENT, not a toy.
+
+==================================================
+TECHNICAL REQUIREMENTS
+==================================================
+
+- Use React Three Fiber (preferred) or Three.js
+- Use a proper GLTF/GLB model (not primitive torus unless heavily customized)
+- Use HDRI environment lighting for reflections
+- Optimize performance for mobile
+- Provide fallback if needed
+
+==================================================
+FINAL EXPECTATION
+==================================================
+
+The result must:
+- Match the REAL ring photo exactly in shape and proportions
+- Look like REAL GOLD (not fake material)
+- Be small, elegant, and premium
+- Have NO fake background or base
+- Feel like part of a luxury brand experience
+
+If it looks like a generic 3D torus, it is WRONG.
+If it looks plastic, it is WRONG.
+If it dominates the screen, it is WRONG.
+
+This must feel like a photographed, high-end gold ring integrated into a modern website.
