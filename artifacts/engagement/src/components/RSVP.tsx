@@ -109,7 +109,7 @@ export const RSVP: React.FC = () => {
                 value={formData.message}
                 onChange={e => setFormData({...formData, message: e.target.value})}
                 className="w-full bg-background border-b border-border px-0 py-3 focus:outline-none focus:border-primary transition-colors text-foreground resize-none text-lg font-light leading-relaxed"
-                placeholder={lang === 'ar' ? 'اكتب رسالة لأسامة وشهد...' : 'Write a message for Osama & Shahd...'}
+                placeholder={lang === 'ar' ? 'اكتب رسالة لأسامة وشهد...' : 'Write a message for Usama & Shahd...'}
               />
             </div>
 

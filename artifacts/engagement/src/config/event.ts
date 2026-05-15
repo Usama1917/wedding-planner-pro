@@ -1,10 +1,10 @@
 export const eventConfig = {
-  groom: "Osama",
+  groom: "Usama",
   bride: "Shahd",
   date: "2026-07-10T19:00:00",
   venue: "Al Masa Open Air Hall",
   locationUrl: "https://maps.app.goo.gl/ioXhRGm8daTC6kPq9",
-  hashtag: "#Osama_and_Shahd",
+  hashtag: "#Usama_and_Shahd",
   
   images: {
     hero: "/images/hero.png",
