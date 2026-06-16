@@ -47,30 +47,13 @@ function parseBody(body) {
 }
 
 function formatTelegramMessage(payload) {
-  const submittedAt = payload.submittedAt
-    ? new Date(payload.submittedAt)
-    : new Date();
-
-  const formattedDate = new Intl.DateTimeFormat('en-GB', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-    timeZone: 'Africa/Cairo',
-  }).format(submittedAt);
-
   const name = payload.name || 'Guest';
   const message = payload.message || '';
-  const language = payload.language || 'unknown';
-  const pageUrl = payload.pageUrl || '';
 
   return [
-    '<b>New RSVP message</b>',
-    '',
     `<b>Name:</b> ${escapeHtml(name)}`,
     `<b>Message:</b> ${escapeHtml(message)}`,
-    `<b>Language:</b> ${escapeHtml(language)}`,
-    `<b>Submitted:</b> ${escapeHtml(formattedDate)} Cairo time`,
-    pageUrl ? `<b>Page:</b> ${escapeHtml(pageUrl)}` : '',
-  ].filter(Boolean).join('\n');
+  ].join('\n');
 }
 
 async function sendTelegramMessage(text) {
