@@ -8,6 +8,7 @@ export const eventConfig = {
   
   images: {
     hero: "/images/hero.png",
+    couple: "/images/couple.png",
     couple1: "/images/couple1.png",
     couple2: "/images/couple2.png",
     gallery1: "/images/gallery1.png",

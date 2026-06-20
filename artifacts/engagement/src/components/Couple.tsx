@@ -38,24 +38,14 @@ export const Couple: React.FC = () => {
         ref={containerRef}
         className="max-w-4xl mx-auto flex items-center justify-center"
       >
-        <figure data-ring-anchor className="couple-card w-full max-w-4xl group">
-          <div className={`relative grid grid-cols-2 aspect-[7/5] rounded-2xl overflow-hidden shadow-xl ${lang === 'ar' ? '[direction:rtl]' : ''}`}>
-            <div className="relative overflow-hidden">
-              <img
-                src={eventConfig.images.couple1}
-                alt={eventConfig.groom}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-            </div>
-            <div className="relative overflow-hidden">
-              <img
-                src={eventConfig.images.couple2}
-                alt={eventConfig.bride}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-            </div>
+        <figure data-ring-anchor className="couple-card w-full max-w-md group">
+          <div className={`relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl ${lang === 'ar' ? '[direction:rtl]' : ''}`}>
+            <img
+              src={eventConfig.images.couple}
+              alt={`${eventConfig.groom} & ${eventConfig.bride}`}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent opacity-70 group-hover:opacity-45 transition-opacity duration-500"></div>
-            <div className="absolute inset-y-0 left-1/2 w-px bg-white/20"></div>
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
             {isDev && (
               <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-md border border-white/10 shadow-lg z-20">
